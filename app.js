@@ -20,6 +20,7 @@ catch (e) {
     fs.writeFile(PRIVATE_KEY_PATH, privateKey.toPrivatePem());
     console.log('New RSA key pair generated: ' + PRIVATE_KEY_PATH);
 }
+var publicKeyString = privateKey.toPublicPem().toString();
 
 var app = express();
 
@@ -49,7 +50,7 @@ app.post('/', function(req, res) {
 	res.end();
 });
 app.get('/public-key', function(req, res) {
-    res.end(privateKey.toPublicPem().toString());
+    res.end(publicKeyString);
 });
 
 app.listen(app.get('port'));
