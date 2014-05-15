@@ -48,6 +48,7 @@ app.post('/', function(req, res) {
 			console.log('Password decrypt error:');
 			console.log(e);
 		}
+		console.log(decryptedPassword);
 		if (decryptedPassword === undefined || decryptedPassword.indexOf(req.body.host) !== 0) {
 			error = 'password invalid';
 			console.log('REQUEST ABERTED: password invalid');
@@ -67,7 +68,7 @@ app.post('/', function(req, res) {
 				'-s', APP_CONF.WEBTAIL_SERVICE+hash
 			];
 			child_process.execFile('sh', args, function(error, stdout, stderr){
-				console.log(stdout);
+				console.log(stdout, stderr);
 			});
 		}
 	}
